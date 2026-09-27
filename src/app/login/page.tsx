@@ -9,13 +9,13 @@ import { Button } from "@/components/ui/button";
 import { TextField } from "@/components/ui/text-field";
 
 export const metadata: Metadata = {
-  title: "Create your account",
-  description: "Sign up for Plugzin — it's free.",
+  title: "Log in",
+  description: "Log in to your Plugzin account.",
 };
 
-export default function SignUpPage() {
+export default function LoginPage() {
   return (
-    <AuthCard title="Create your Account" subtitle="Sign up it's free">
+    <AuthCard title="Welcome back">
       <form className="flex w-full flex-col gap-5">
         <div className="flex flex-col gap-4">
           <TextField
@@ -25,39 +25,26 @@ export default function SignUpPage() {
             autoComplete="email"
             className="font-helvetica"
           />
-          <PasswordField name="password" placeholder="Enter password" />
           <PasswordField
-            name="confirmPassword"
-            placeholder="Confirm password"
+            name="password"
+            placeholder="Enter password"
+            autoComplete="current-password"
           />
           <Button
             type="submit"
             className="font-display h-11 w-full text-base font-black uppercase"
           >
-            Create Account
+            Log in
           </Button>
         </div>
 
         <AuthDivider />
         <SocialSignIn />
 
-        <p className="font-helvetica text-ash-400 tracking-snug leading-auto text-center text-xs">
-          By clicking <span className="font-bold">Create account</span>, you
-          agree to Plugzin&rsquo;s{" "}
-          <Link href="/policy" className="underline">
-            privacy notice
-          </Link>
-          ,{" "}
-          <Link href="/terms" className="underline">
-            T&amp;Cs
-          </Link>{" "}
-          and to receive offers, news and updates.
-        </p>
-
         <p className="font-helvetica text-ash-300 tracking-snug leading-auto text-center text-sm">
-          Already have an account?{" "}
-          <Link href="/login" className="text-brand font-bold">
-            Log In
+          Don&rsquo;t have an account?{" "}
+          <Link href="/signup" className="text-brand font-bold">
+            Sign Up
           </Link>
         </p>
       </form>

@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils";
 const SHAPES = {
   primary: "btn-shape-primary",
   outline: "btn-shape-outline",
+  outlineBrand: "btn-shape-outline-brand",
 } as const;
 
 type Variant = keyof typeof SHAPES;

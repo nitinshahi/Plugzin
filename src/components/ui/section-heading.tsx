@@ -12,11 +12,13 @@ export function SectionHeading({
   description,
   align = "center",
   className,
+  descriptionClassName,
 }: {
   title: ReactNode;
   description?: ReactNode;
   align?: "left" | "center";
   className?: string;
+  descriptionClassName?: string;
 }) {
   return (
     <div
@@ -26,14 +28,15 @@ export function SectionHeading({
         className,
       )}
     >
-      <h2 className="font-display text-display-md leading-display text-balance uppercase">
+      <h2 className="font-display text-5xl leading-display text-balance uppercase">
         {title}
       </h2>
       {description ? (
         <p
           className={cn(
-            "text-ash-500 max-w-124 text-base",
+            "font-helvetica leading-auto text-ash-500 max-w-124 text-base",
             align === "center" && "text-center",
+            descriptionClassName,
           )}
         >
           {description}

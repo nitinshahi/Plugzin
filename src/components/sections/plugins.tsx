@@ -1,10 +1,11 @@
 import { PluginCard } from "@/components/cards/plugin-card";
+import { SignupCtaCard } from "@/components/cards/signup-cta-card";
 import { AngledButton } from "@/components/ui/angled-button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getFeaturedPlugins } from "@/data/plugins";
 
 export function Plugins() {
-  const featured = getFeaturedPlugins(3);
+  const featured = getFeaturedPlugins(2);
 
   return (
     <section className="py-23">
@@ -12,7 +13,7 @@ export function Plugins() {
         <div className="flex items-start justify-between gap-8">
           <SectionHeading
             align="left"
-            title="Our Plugins"
+            title="Tools & Plugins"
             description="Tested tools with clear documentation, regular updates and practical support."
             className="max-w-88"
           />
@@ -29,6 +30,7 @@ export function Plugins() {
               index={index + 1}
             />
           ))}
+          <SignupCtaCard />
         </div>
       </div>
     </section>

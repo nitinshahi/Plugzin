@@ -2,13 +2,13 @@ import { AngledButton } from "@/components/ui/angled-button";
 
 export function Newsletter() {
   return (
-    <section className="pt-23 pb-43">
+    <section className="pt-23 pb-30">
       <div className="mx-auto w-full max-w-276 px-5">
         <div className="bg-surface-2 flex flex-col items-center rounded-2xl px-20 py-12">
-          <h2 className="font-display max-w-188 text-center text-display-md leading-display text-balance text-white uppercase">
+          <h2 className="font-display max-w-188 text-center text-5xl leading-display text-balance text-white uppercase">
             Get your hands on the upcoming tools before anyone
           </h2>
-          <p className="font-display mt-4 text-2xl text-white uppercase">
+          <p className="font-helvetica leading-auto text-ash-300 mt-4 text-xl">
             Subscribe to our Newsletter
           </p>
 

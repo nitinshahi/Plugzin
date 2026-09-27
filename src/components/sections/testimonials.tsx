@@ -12,6 +12,7 @@ export function Testimonials() {
             title="Used by people who build for a living."
             description="Every review below is tied to a purchase, no invited testimonials."
             className="max-w-128"
+            descriptionClassName="max-w-88"
           />
           <div className="shrink-0 text-right">
             <p className="font-display text-brand text-display-lg leading-none">

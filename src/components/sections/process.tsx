@@ -5,26 +5,37 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { processSteps } from "@/data/process";
 
 /**
- * Step positions are absolute because the Figma alternates them above and
- * below the track at irregular intervals - a grid would not reproduce it.
- * Coordinates are relative to the 1064px-wide timeline box.
+ * The steps alternate above and below the track at irregular intervals, so
+ * they are placed absolutely. Coordinates come from the Figma frame, measured
+ * from the top-left of the 1064-wide timeline box and snapped to the 4px grid.
  */
 const STEP_POSITIONS = [
-  "top-8 left-0",
-  "top-46 left-70",
-  "top-7 left-157",
-  "top-46 left-226",
+  "top-1 left-0",
+  "top-39 left-70",
+  "top-0 left-157",
+  "top-40 left-226",
 ];
 
-/**
- * Dashed elbows linking consecutive steps. These are approximated with
- * dashed borders rather than the exact vector from Figma - worth a look
- * against the design before sign-off.
- */
+/** The dashed elbows between consecutive steps, exported from Figma. */
 const CONNECTORS = [
-  "top-25 left-40 h-20 w-30 border-t border-r",
-  "top-25 left-109 h-35 w-47 border-b border-r",
-  "top-25 left-196 h-21 w-30 border-t border-r",
+  {
+    src: "/images/process-connector-1.svg",
+    width: 101,
+    height: 122,
+    position: "top-46 left-66 h-29 w-25",
+  },
+  {
+    src: "/images/process-connector-2.svg",
+    width: 176,
+    height: 209,
+    position: "top-6 left-110 h-51 w-43",
+  },
+  {
+    src: "/images/process-connector-3.svg",
+    width: 104,
+    height: 122,
+    position: "top-46 left-221 h-29 w-25",
+  },
 ];
 
 export function Process() {
@@ -43,12 +54,17 @@ export function Process() {
           </AngledButton>
         </div>
 
-        <div className="relative mt-16 h-72 w-full">
+        <div className="relative mt-19 h-76 w-full">
           {CONNECTORS.map((connector) => (
-            <span
-              key={connector}
+            <Image
+              key={connector.src}
+              src={connector.src}
+              alt=""
               aria-hidden
-              className={`absolute border-dashed border-white/15 ${connector}`}
+              width={connector.width}
+              height={connector.height}
+              unoptimized
+              className={`absolute ${connector.position}`}
             />
           ))}
 
@@ -59,7 +75,7 @@ export function Process() {
             width={1064}
             height={20}
             unoptimized
-            className="absolute top-35 left-0 w-full"
+            className="absolute top-28 left-0 w-full"
           />
 
           {processSteps.map((step, index) => (
@@ -73,7 +89,7 @@ export function Process() {
               <p className="font-display mt-2 text-sm leading-none text-white uppercase">
                 {step.title}
               </p>
-              <p className="mt-2 text-2xs leading-snug text-ash-300">
+              <p className="text-ash-300 mt-2 text-2xs leading-snug">
                 {step.description}
               </p>
             </div>

@@ -4,7 +4,7 @@ import type { Testimonial } from "@/types/plugin";
 
 export function TestimonialCard({ review }: { review: Testimonial }) {
   return (
-    <figure className="bg-surface-2 flex h-full flex-col rounded-lg p-4">
+    <figure className="bg-surface-2 flex h-full min-h-59 flex-col rounded-lg p-4">
       <blockquote className="text-ash-500 text-base leading-6">
         {review.quote}
       </blockquote>

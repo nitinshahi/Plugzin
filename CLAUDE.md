@@ -61,7 +61,17 @@ are snapped to the nearest 4px step or given a token.
 
 ## Gotchas
 
-- The dev server does not always pick up `@theme` changes. If a new token seems
-  to have no effect, restart it before debugging the token.
+- **The dev server serves stale CSS.** New tokens and newly-used spacing
+  utilities silently produce no CSS - no class, no error, no warning. A plain
+  restart is often not enough. When something new has no effect, verify against
+  a clean production build before debugging the code:
+
+  ```
+  rm -rf .next && npm run build
+  ```
+
+  Then grep the generated `.next/static/chunks/*.css` for the class. Note that
+  `.next/dev/static/**` also matches a naive `*static*` glob and is the stale
+  copy, so check `.next/static` specifically.
 - shadcn's `Button` sets `font-medium`; tailwind-merge doesn't treat that as the
   same concern as `font-display`, so pair the two with an explicit `font-black`.

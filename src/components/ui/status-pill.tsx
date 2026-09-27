@@ -8,11 +8,11 @@ const TONES: Record<Tone, { wrapper: string; dot: string }> = {
   /* Hero trust markers: hairline outline, no fill. */
   neutral: { wrapper: "border-ash-100 text-ash-100", dot: "bg-ash-100" },
   available: {
-    wrapper: "border-brand bg-brand/[0.13] text-white",
+    wrapper: "border-brand bg-brand/13 text-white",
     dot: "bg-brand",
   },
   soon: {
-    wrapper: "border-warn bg-warn/[0.13] text-white",
+    wrapper: "border-warn bg-warn/13 text-white",
     dot: "bg-warn",
   },
 };

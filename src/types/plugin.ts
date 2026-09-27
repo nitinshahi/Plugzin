@@ -10,6 +10,12 @@ export type Plugin = {
   version: string;
   /** Host-app version this build targets, e.g. "Premiere Pro 2026". */
   compatibility: string;
+  /** Headline used on the detail page, which names the host app. */
+  headline: string;
+  /** Bulleted support claims shown beside the demo on the detail page. */
+  highlights: string[];
+  lastUpdate: string;
+  downloadSize: string;
   /** Price in the smallest currency unit, so we never do float math. */
   priceCents: number;
   currency: "USD";

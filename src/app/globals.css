@@ -102,8 +102,7 @@
   --spectrum-2: #8cd869;
   --spectrum-3: #935ab4;
   --spectrum-4: #8ec85b;
-  /* Eyeballed off the Figma export - see note in the handover. */
-  --warn: #e2802f;
+  --warn: #f7843d;
 
   /* shadcn semantic tokens pointed at the palette above, so anything added
      later with `npx shadcn add` inherits the brand instead of default zinc. */
@@ -227,6 +226,16 @@
   border-color: transparent;
   border-width: 0 10px 0 31px;
   border-image-source: url("/images/button-outline.svg");
+  border-image-slice: 0 10 0 31 fill;
+  border-image-width: 0 10px 0 31px;
+  border-image-repeat: stretch;
+}
+
+@utility btn-shape-outline-brand {
+  border-style: solid;
+  border-color: transparent;
+  border-width: 0 10px 0 31px;
+  border-image-source: url("/images/button-outline-brand.svg");
   border-image-slice: 0 10 0 31 fill;
   border-image-width: 0 10px 0 31px;
   border-image-repeat: stretch;

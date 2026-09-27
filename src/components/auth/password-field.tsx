@@ -8,9 +8,11 @@ import { TextField } from "@/components/ui/text-field";
 export function PasswordField({
   name,
   placeholder,
+  autoComplete = "new-password",
 }: {
   name: string;
   placeholder: string;
+  autoComplete?: string;
 }) {
   const [visible, setVisible] = useState(false);
 
@@ -19,7 +21,7 @@ export function PasswordField({
       name={name}
       type={visible ? "text" : "password"}
       placeholder={placeholder}
-      autoComplete="new-password"
+      autoComplete={autoComplete}
       trailing={
         <button
           type="button"
