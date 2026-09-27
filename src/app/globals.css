@@ -1,26 +1,239 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* --- Plugzin brand tokens, read straight off the Figma homepage frame --- */
+  --color-brand: var(--brand);
+  --color-ink: var(--ink);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-warn: var(--warn);
+  --color-brand-dim: var(--brand-dim);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-surface-raised: var(--surface-raised);
+
+  /* One neutral ramp. Everything grey in the design maps onto a step here. */
+  --color-ash-100: var(--ash-100);
+  --color-ash-300: var(--ash-300);
+  --color-ash-400: var(--ash-400);
+  --color-ash-500: var(--ash-500);
+  --color-ash-600: var(--ash-600);
+  --color-ash-700: var(--ash-700);
+
+  --font-helvetica: var(--font-helvetica);
+  --radius-card: 21px;
+  --radius-panel: 16px;
+  --text-display-sm: 32px;
+  --text-display-md: 40px;
+  --text-display-lg: 78px;
+  --text-display-xl: 88px;
+  --text-2xs: 10px;
+  --container-auth-card: 457px;
+  --tracking-snug: -0.02em;
+  /* Figma sets most copy to CSS `normal` leading, i.e. the font's own metrics. */
+  --leading-auto: normal;
+  --leading-display: 0.944;
+
+  /* --- shadcn mappings (left intact so `npx shadcn add` keeps working) --- */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --brand: #c9f73d;
+  --ink: #0a0a0b;
+  --surface: #1d1f23;
+  --surface-2: #151619;
+  --brand-dim: #bde839;
+  --surface-sunken: #101114;
+  --surface-raised: #2f2f2f;
+
+  --ash-100: #d5d7da;
+  --ash-300: #8f939a;
+  --ash-400: #717680;
+  --ash-500: #606060;
+  --ash-600: #4c4c4c;
+  --ash-700: #262626;
+
+  /* The four stops of the brand gradient, taken from the timeline dots. */
+  --spectrum-1: #76feea;
+  --spectrum-2: #8cd869;
+  --spectrum-3: #935ab4;
+  --spectrum-4: #8ec85b;
+  /* Eyeballed off the Figma export - see note in the handover. */
+  --warn: #e2802f;
+
+  /* shadcn semantic tokens pointed at the palette above, so anything added
+     later with `npx shadcn add` inherits the brand instead of default zinc. */
+  --background: var(--ink);
+  --foreground: #ffffff;
+  --card: var(--surface);
+  --card-foreground: #ffffff;
+  --popover: var(--surface);
+  --popover-foreground: #ffffff;
+  --primary: var(--brand);
+  --primary-foreground: var(--ink);
+  --secondary: var(--surface);
+  --secondary-foreground: #ffffff;
+  --muted: var(--surface-2);
+  --muted-foreground: var(--ash-500);
+  --accent: var(--brand);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: var(--ash-600);
+  --input: var(--ash-400);
+  --ring: var(--brand);
+  --radius: 0.5rem;
+  --sidebar: var(--surface);
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: var(--brand);
+  --sidebar-primary-foreground: var(--ink);
+  --sidebar-accent: var(--surface-2);
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: var(--ash-600);
+  --sidebar-ring: var(--brand);
+  --chart-1: var(--brand);
+  --chart-2: oklch(0.7 0.15 160);
+  --chart-3: oklch(0.6 0.12 250);
+  --chart-4: oklch(0.55 0.1 300);
+  --chart-5: oklch(0.5 0.08 20);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+/* Helvetica Black Condensed is already both condensed and black, so no
+   synthetic weight or width adjustment is applied here. */
+@utility font-display {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 900;
+}
+
+@layer base {
+  body {
+    @apply bg-ink text-white antialiased;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@utility bg-gradient-brand {
+  background-image: linear-gradient(
+    90deg,
+    var(--spectrum-1) 0%,
+    var(--spectrum-2) 33.33%,
+    var(--spectrum-3) 66.66%,
+    var(--spectrum-4) 100%
+  );
+}
+
+/* The chamfered CTA shape. border-image keeps the 31px angled cap and the 10px
+   rounded corner at natural size while only the middle stretches; no Tailwind
+   utility covers this. */
+@utility btn-shape-primary {
+  border-style: solid;
+  border-color: transparent;
+  border-width: 0 10px 0 31px;
+  border-image-source: url("/images/button-primary.svg");
+  border-image-slice: 0 10 0 31 fill;
+  border-image-width: 0 10px 0 31px;
+  border-image-repeat: stretch;
+}
+
+@utility btn-shape-outline {
+  border-style: solid;
+  border-color: transparent;
+  border-width: 0 10px 0 31px;
+  border-image-source: url("/images/button-outline.svg");
+  border-image-slice: 0 10 0 31 fill;
+  border-image-width: 0 10px 0 31px;
+  border-image-repeat: stretch;
+}
+
+@utility transition-filter {
+  transition-property: filter;
+  transition-timing-function: var(--default-transition-timing-function);
+  transition-duration: var(--default-transition-duration);
 }
